@@ -19,7 +19,7 @@ maps.push(`
   -XXXXXXXXX
   -XXXXXXXXX
   -XXXXXXXXX
-  -XXXXXXXXX
+  ---XXXXXXX
   OXXXXXXXXX
 `);
 maps.push(`
