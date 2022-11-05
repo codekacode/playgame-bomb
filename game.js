@@ -11,7 +11,8 @@ window.addEventListener("resize", setCanvaSize);
 let canvaSize;
 let elementSize;
 let flag = true;
-console.log({ canvaSize, elementSize });
+let level = 0;
+
 const playerPosition = {
   x: undefined,
   y: undefined,
@@ -43,7 +44,12 @@ function startGame() {
   game.font = elementSize + "px Verdana";
   game.textAlign = "end";
 
-  const map = maps[0];
+  const map = maps[level];
+
+  if (!map){
+    gameWin()
+    return;
+  }
   const mapRows = map.trim().split("\n");
   const mapRowCols = mapRows.map((row) => row.trim().split(""));
   
@@ -71,16 +77,6 @@ function startGame() {
     });
   });
   flag = false;
-
-  // for (let row = 1; row <= 10; row++) {
-  //   for (let col = 1; col <= 10; col++) {
-  //     game.fillText(
-  //       emojis[mapRowCols[row - 1][col - 1]],
-  //       elementSize * col,
-  //       elementSize * row
-  //     );
-  //   }
-  // }
   movePlayer();
 }
 
@@ -92,7 +88,7 @@ function movePlayer() {
   const giftCollision = giftCollisionX && giftCollisionY;
   console.log(giftPosition);
   if (giftCollision) {
-    console.log("Subiste de nivel");
+    levelWin()
   }
 
   const enemyCollision = enemiesPosition.find(enemy => {
@@ -154,4 +150,14 @@ function moveByKeys(event) {
   else if (event.key == "ArrowLeft") moveLeft();
   else if (event.key == "ArrowRight") moveRight();
   else if (event.key == "ArrowDown") moveDown();
+}
+
+function levelWin() {
+  level++;
+  startGame();
+}
+
+function gameWin(){
+  console.log("TERMINASTE EL JUEGO!")
+
 }
