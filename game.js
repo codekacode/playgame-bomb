@@ -25,11 +25,12 @@ const enemiesPosition = [];
 
 function setCanvaSize() {
   if (window.innerHeight > window.innerWidth) {
-    canvaSize = window.innerWidth * 0.8;
+    canvaSize = window.innerWidth * 0.6;
   } else {
-    canvaSize = window.innerHeight * 0.8;
+    canvaSize = window.innerHeight * 0.6;
   }
 
+  // canvasSize = Number(canvasSize.toFixed(0));
   canvas.setAttribute("width", canvaSize);
   canvas.setAttribute("height", canvaSize);
 
@@ -122,8 +123,8 @@ function moveUp() {
 }
 
 function moveLeft() {
-  if (playerPosition.x - elementSize < 1) {
-    console.log("OUT");
+  if((playerPosition.x - elementSize) < 1){
+    console.log('OUT')
   } else {
     playerPosition.x -= elementSize;
     startGame();
@@ -131,7 +132,7 @@ function moveLeft() {
 }
 
 function moveRight() {
-  if (playerPosition.x + elementSize > 560) {
+  if (playerPosition.x + elementSize > 600) {
     console.log("OUT");
   } else {
     playerPosition.x += elementSize;
@@ -140,7 +141,7 @@ function moveRight() {
 }
 
 function moveDown() {
-  if (playerPosition.y + elementSize > 560) {
+  if (playerPosition.y + elementSize > 600) {
     console.log("OUT");
   } else {
     playerPosition.y += elementSize;
